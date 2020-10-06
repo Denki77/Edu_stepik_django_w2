@@ -31,8 +31,8 @@
     {% block container %} {% endblock %}
 
 </div>
-<div class="container">
-    <div class="footer row">
+<div class="container mt-5">
+    <div class="footer row p-4">
         <div class="col-6">
     {% for link, departure in departures.items %}
         <a class="{% if request.path == '/departures/'|add:link|add:'/' %}active{% endif %}"

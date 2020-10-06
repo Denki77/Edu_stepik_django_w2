@@ -1,12 +1,14 @@
+import numpy
+
 from django.http import Http404
 from django.shortcuts import render
 from django.views import View
 
-from tour.data.data_tour import title
 from tour.data.data_tour import departures
-from tour.data.data_tour import subtitle
 from tour.data.data_tour import description
 from tour.data.data_tour import data_tours
+from tour.data.data_tour import subtitle
+from tour.data.data_tour import title
 
 
 class MainView(View):
@@ -14,8 +16,12 @@ class MainView(View):
 
         arr_tours = {}
 
-        for key in list(data_tours.keys())[:6]:
+        multiple_random_choice = numpy.random.choice(list(data_tours.keys()), size=6, replace=False)
+
+        for key in multiple_random_choice:
+
             arr_tours[key] = data_tours[key]
+
             if len(data_tours[key]['description']) >= 157:
                 arr_tours[key]['short_description'] = arr_tours[key]['description'][:157] + '...'
             else:
@@ -88,7 +94,6 @@ class DepartureView(View):
 
 class TourView(View):
     def get(self, request, *args, **kwargs):
-
         data_tours[kwargs['tour']]['html_stars'] = ' '.join(['★' * int(data_tours[kwargs['tour']]['stars'])])
 
         return render(request, 'tour.html', context={
