@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+
+{% block container %}
+
+    <h1 class="display-3 mt-4" data-test="title">
+        {{ data_tours.title }}
+        {{ data_tours.stars }}
+        <span class="stars">{{ data_tours.html_stars }}</span>
+    </h1>
+
+    <!-- HERO -->
+
+    <p class="lead" data-test="lead"><span data-test="country">{{ data_tours.country }}</span>
+        из <span data-text="departure">{{ from }}</span>
+        на <span data-text="nights">{{ data_tours.nights }}</span> ночей</p>
+
+    <img data-test="picture" src="{{ data_tours.picture }}" class="w-75" alt="">
+
+    <p class="my-4 w-75" data-test="description">{{ data_tours.description }}</p>
+
+    <a href="" class="btn btn-success btn-lg" data-test="buybutton">Купить тур за <span data-test="price">{{ data_tours.price }} руб </span></a>
+{% endblock %}

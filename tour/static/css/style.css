@@ -1,0 +1,16 @@
+.img-for_card{
+    background-repeat: no-repeat;
+    background-color: #f5f3f3;
+    min-height: 250px;
+    background-size: contain;
+    background-position: center center;
+}
+.stars{
+    font-size: 30px;
+}
+.container .display-3{
+    font-size: 3.5rem;
+}
+.footer{
+    background-color: #f5f3f3;
+}
