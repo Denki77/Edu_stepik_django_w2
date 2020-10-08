@@ -1,6 +1,6 @@
 import numpy
 
-from django.http import Http404
+from django.http import Http404, HttpResponseNotFound
 from django.shortcuts import render
 from django.views import View
 
@@ -92,8 +92,16 @@ class DepartureView(View):
         )
 
 
+def custom_handler404(request, exception):
+    return HttpResponseNotFound('<h1>Error 404</h1>Ой, что то сломалось... Простите, извините!')
+
+
 class TourView(View):
     def get(self, request, *args, **kwargs):
+
+        if kwargs['tour'] not in data_tours.keys():
+            raise Http404
+
         data_tours[kwargs['tour']]['html_stars'] = ' '.join(['★' * int(data_tours[kwargs['tour']]['stars'])])
 
         return render(request, 'tour.html', context={
